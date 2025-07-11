@@ -1,46 +1,47 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
-  import type { Book } from '../types';
+	import { createEventDispatcher } from 'svelte';
 
-  export let open = false;
-  export let onSave: (book: Book) => void = (book) => {};
+	let { open }: { open: boolean } = $props();
 
-  let title = "";
-  let author = "";
+	let title = '';
+	let author = '';
 
-  const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher();
 
-  function save() {
-    onSave({ title, author });
-    title = "";
-    author = "";
-    dispatch('close');
-  }
+	function handleSave() {
+		// Basic validation to ensure fields are not empty
+		if (title.trim() && author.trim()) {
+			dispatch('save', { title, author });
+			// Reset fields for the next time the modal opens
+			title = '';
+			author = '';
+		}
+	}
 
-  function close() {
-    dispatch('close');
-  }
+	function handleClose() {
+		dispatch('close');
+	}
 </script>
 
 {#if open}
-  <div class="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
-    <div class="bg-white p-6 rounded shadow-lg w-full max-w-md">
-      <h2 class="text-xl font-semibold mb-4">Add a Book</h2>
-      
-      <label class="block mb-2">
-        Title:
-        <input bind:value={title} class="w-full p-2 border rounded mt-1" />
-      </label>
-      
-      <label class="block mb-4">
-        Author:
-        <input bind:value={author} class="w-full p-2 border rounded mt-1" />
-      </label>
-      
-      <div class="flex justify-end gap-2">
-        <button class="bg-gray-200 px-4 py-2 rounded" on:click={close}>Cancel</button>
-        <button class="bg-blue-600 text-white px-4 py-2 rounded" on:click={save}>Save</button>
-      </div>
-    </div>
-  </div>
+	<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+		<div class="w-full max-w-md rounded bg-white p-6 shadow-lg">
+			<h2 class="mb-4 text-xl font-semibold">Add a Book</h2>
+
+			<label class="mb-2 block">
+				Title:
+				<input bind:value={title} class="mt-1 w-full rounded border p-2" />
+			</label>
+
+			<label class="mb-4 block">
+				Author:
+				<input bind:value={author} class="mt-1 w-full rounded border p-2" />
+			</label>
+
+			<div class="flex justify-end gap-2">
+				<button class="rounded bg-gray-200 px-4 py-2" on:click={handleClose}>Cancel</button>
+				<button class="rounded bg-blue-600 px-4 py-2 text-white" on:click={handleSave}>Save</button>
+			</div>
+		</div>
+	</div>
 {/if}
