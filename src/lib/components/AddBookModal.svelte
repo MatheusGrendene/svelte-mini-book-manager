@@ -39,8 +39,8 @@
 			</label>
 
 			<div class="flex justify-end gap-2">
-				<button class="rounded bg-gray-200 px-4 py-2" on:click={handleClose}>Cancel</button>
-				<button class="rounded bg-blue-600 px-4 py-2 text-white" on:click={handleSave}>Save</button>
+				<button class="rounded bg-gray-200 px-4 py-2" onclick={handleClose}>Cancel</button>
+				<button class="rounded bg-blue-600 px-4 py-2 text-white" onclick={handleSave}>Save</button>
 			</div>
 		</div>
 	</div>
