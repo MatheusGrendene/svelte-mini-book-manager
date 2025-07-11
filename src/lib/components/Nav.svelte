@@ -5,7 +5,7 @@
 </script>
 
 <nav
-	class="fixed top-0 right-0 left-0 z-10 flex items-center justify-between bg-white px-6 py-4 shadow-md"
+	class="fixed top-0 right-0 left-0 z-10 flex items-center justify-between bg-white px-6 py-6 shadow-md"
 >
 	<h2 class="text-xl font-bold">{title}</h2>
 	{#if $page.url.pathname === '/'}
