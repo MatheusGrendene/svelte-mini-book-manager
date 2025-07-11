@@ -2,6 +2,9 @@
 
 A simple web application for managing collection of books, built with SvelteKit and Tailwind CSS.
 
+## After 2h of development
+All modifications made to the codebase after the initial 2-hour development period (stared at 11:18pm and ended at 1:18am) will be in a seperate branch named `after-2h`. This branch contains additional features, improvements, and bug fixes that were not part of the original 2-hour development as proposed. The only exeption is the README file with this very section.
+
 ## Getting Started
 
 To get a local copy up and running, follow these simple steps.
